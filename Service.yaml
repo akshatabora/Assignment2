@@ -1,0 +1,15 @@
+# service.yaml - SWE645 HW2
+# Exposes the Student Survey app via LoadBalancer
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: simple-webapp-service
+spec:
+  selector:
+    app: simple-webapp
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer

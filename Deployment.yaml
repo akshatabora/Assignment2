@@ -1,0 +1,23 @@
+# deployment.yaml - SWE645 HW2
+# Deploys Student Survey app with 3 pods for resiliency
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-webapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: simple-webapp
+  template:
+    metadata:
+      labels:
+        app: simple-webapp
+    spec:
+      containers:
+      - name: simple-webapp
+        image: akshatabora/studentsurvey645:latest
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Always
