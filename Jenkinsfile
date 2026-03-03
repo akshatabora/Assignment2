@@ -17,7 +17,7 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Building the web app into a docker image') {
             steps {
                 script {
                     sh "docker build -t ${FULL_IMAGE} ."
@@ -25,7 +25,7 @@ pipeline {
             }
         }
 
-        stage('Push to DockerHub') {
+        stage('Pushing Image to Dockerhub') {
             steps {
                 script {
                     sh "echo ${DOCKERHUB_CREDS_PSW} | docker login -u ${DOCKERHUB_CREDS_USR} --password-stdin"
@@ -34,7 +34,7 @@ pipeline {
             }
         }
 
-        stage('Deploy to Kubernetes') {
+        stage('Deploying image to cluster on Rancher') {
             steps {
                 script {
                     sh """
