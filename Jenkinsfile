@@ -5,7 +5,7 @@ pipeline {
         DOCKERHUB_PASS  = credentials('docker-pass')
         DOCKERHUB_USER  = 'akshatabora'
         APP_NAME        = 'studentsurvey645'
-        IMAGE_TAG       = "${BUILD_TIMESTAMP}"
+        IMAGE_TAG       = "${BUILD_NUMBER}"
         FULL_IMAGE      = "${DOCKERHUB_USER}/${APP_NAME}:${IMAGE_TAG}"
     }
 
