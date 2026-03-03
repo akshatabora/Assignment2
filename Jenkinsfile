@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_PASS  = credentials('docker-pass')
+        DOCKERHUB_CREDS  = credentials('docker-pass')
         DOCKERHUB_USER  = 'akshatabora'
         APP_NAME        = 'studentsurvey645'
         IMAGE_TAG       = "${BUILD_NUMBER}"
@@ -28,7 +28,7 @@ pipeline {
         stage('Push to DockerHub') {
             steps {
                 script {
-                    sh "docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASS}"
+                    sh "echo ${DOCKERHUB_CREDS_PSW} | docker login -u ${DOCKERHUB_CREDS_USR} --password-stdin"
                     sh "docker push ${FULL_IMAGE}"
                 }
             }
