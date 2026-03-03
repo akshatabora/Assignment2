@@ -1,6 +1,3 @@
-# Jenkinsfile - SWE645 HW2 CI/CD Pipeline
-# Automates: build Docker image → push to DockerHub → deploy to Kubernetes
-
 pipeline {
     agent any
 
