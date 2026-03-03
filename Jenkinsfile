@@ -42,7 +42,8 @@ pipeline {
                 script {
                     sh """
                         kubectl set image deployment/simple-webapp \
-                            simple-webapp=${FULL_IMAGE}
+                            simple-webapp=${FULL_IMAGE} \
+                            --kubeconfig /root/.kube/config
                     """
                 }
             }
