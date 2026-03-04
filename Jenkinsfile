@@ -42,11 +42,8 @@ pipeline {
                             simple-webapp=${FULL_IMAGE} \
                             --kubeconfig /var/lib/jenkins/.kube/config
                     """
-                    // Wait for rollout to complete
                     sh "kubectl rollout status deployment/simple-webapp --kubeconfig /var/lib/jenkins/.kube/config"
-                    // Kill old port-forward and restart it
-                    sh "pkill -f 'kubectl port-forward' || true"
-                    sh "nohup kubectl port-forward service/simple-webapp-service 30007:80 --address 0.0.0.0 --kubeconfig /root/.kube/config > /dev/null 2>&1 &"
+                    sh "sudo /usr/local/bin/restart-portforward.sh"
                 }
             }
         }
